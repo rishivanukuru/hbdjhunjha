@@ -2,17 +2,238 @@
 
 <head>
   
+    <meta name="theme-color" content="#000">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+    <link rel="stylesheet" href="/assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">   
     
-    
+    <script src="/assets/isotope.pkgd.min.js"></script>
+        <script src="/assets/packery-mode.pkgd.min.js"></script>
+
+
 </head>
 
+
+    
 <body>
     
-    <h1>HBD Jhunjha</h1>
+    <div class = "main-content">
+    
+    <h1>HBD-Flip Interface</h1>
+    <h2>Jhunjha et al.</h2>
+    <p> Interface for user who emerged today 24 years ago. </p>
+
+    
+    
+    
+    </div>
+    
+<div class = "buttongrid">    
+<div class="button-group filters-button-group">
+  <button class="button is-checked" data-filter="*">All</button>
+  <button class="button" data-filter=".thriller">Thriller</button>
+  <button class="button" data-filter=".romance">Romance</button>
+  <button class="button" data-filter=".comedy">Comedy</button>
+    <button class="button" data-filter=".y2020">2020</button>
+  <button class="button" data-filter=".y2019">2019</button>
+  <button class="button" data-filter=".y2018">2018</button>
+  <button class="button" data-filter=".y2017">2017</button>
+  <button class="button" data-filter=".y2016">2016</button>
+  <button class = "button" data-filter=".y2015">2015</button>
+      <button class = "button" onclick="WiggleToggle()">Wiggle Toggle</button>
+
+</div>
+</div>
+<br> 
+    <br>
+<div class="grid">
+    
+    
+    <div class="poster-image comedy y2019" data-category = "comedy" style = "width:300px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/Jazunjha_Comedy_2019.png">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image thriller y2019" data-category = "action" style = "width:400px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/Jhunja_Thriller_2019.png">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image scifi y2017" data-category = "action" style = "width:350px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/KaunMilGaya_SciFi_2017.png">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image romance y2019" data-category = "action" style = "width:500px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/RightSwipeRohan_Comedy_2019.png">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image comedy y2019" data-category = "action" style = "width:400px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/H10KyuHai_Comedy_2019.png">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image action" data-category = "action" style = "width:300px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/thumbnail.jpg">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image romance" data-category = "romance" style = "width:500px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/thumbnail.jpg">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image romance" data-category = "romance" style = "width:400px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/thumbnail.jpg">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image drama" data-category = "drama" style = "width:150px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/thumbnail.jpg">
+        </a>
+    </div>    
+    </div>
+    
+    <div class="poster-image action" data-category = "action" style = "width:330px;">
+    <div class="poster-holder">
+        <a href="">
+        <img src="images/thumbnail.jpg">
+        </a>
+    </div>    
+    </div>
+   
+    
+    
+    
+</div>
+
+    
+    <div class="main-content">
+    <p>Made with 🎂 and broken dreams of Japan trips 😭.</p>
+        <p>But no really, Happy Birthday Jhunjha 🎉</p>
+    
+    </div>
+    
     
 </body>
 
+<script>
 
+   // external js: isotope.pkgd.js
+
+// init Isotope
+var iso = new Isotope( '.grid', {
+  itemSelector: '.poster-image',
+  layoutMode: 'packery',
+    packery: {
+      gutter: 16
+    }
+});
+
+// filter functions
+var filterFns = {
+
+};
+
+// bind filter button click
+var filtersElem = document.querySelector('.filters-button-group');
+filtersElem.addEventListener( 'click', function( event ) {
+  // only work with buttons
+  if ( !matchesSelector( event.target, 'button' ) ) {
+    return;
+  }
+  var filterValue = event.target.getAttribute('data-filter');
+  // use matching filter function
+  filterValue = filterFns[ filterValue ] || filterValue;
+  iso.arrange({ filter: filterValue });
+});
+
+// change is-checked class on buttons
+var buttonGroups = document.querySelectorAll('.button-group');
+for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
+  var buttonGroup = buttonGroups[i];
+  radioButtonGroup( buttonGroup );
+}
+
+function radioButtonGroup( buttonGroup ) {
+  buttonGroup.addEventListener( 'click', function( event ) {
+    // only work with buttons
+    if ( !matchesSelector( event.target, 'button' ) ) {
+      return;
+    }
+    buttonGroup.querySelector('.is-checked').classList.remove('is-checked');
+    event.target.classList.add('is-checked');
+  });
+}
+
+function WiggleToggle(){
+    
+    console.log("WiggleSwitch");
+    
+    var images = document.getElementsByClassName('poster-holder');
+    
+    for( var i = 0; i< images.length; i++)
+        {
+            
+            var randomNumber = Math.floor(Math.random() * 10);
+            console.log(randomNumber.toString());
+
+
+            
+            if(images[i].getAttribute("id")=="wiggle")
+                {
+                    console.log("Wiggle Deactivate");
+                    
+                    images[i].setAttribute("style", "");
+                    
+                    images[i].setAttribute("id","nowiggle");
+                }
+            else
+                {
+                    console.log("Wiggle Activate");
+                    
+                    images[i].setAttribute("style", "animation: shake 1." + randomNumber.toString() + "s; animation-iteration-count: infinite; ");
+                    
+                    console.log(randomNumber);
+                    
+                    images[i].setAttribute("id","wiggle");
+
+                }
+            
+
+        }
+    
+}
+    
+</script>
 
 
 </html>
